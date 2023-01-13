@@ -1,3 +1,4 @@
 .DStore
+.env
 node_modules
 dist
