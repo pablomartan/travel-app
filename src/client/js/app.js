@@ -41,7 +41,7 @@ const getWeather = async (cityName) => {
  * Retrieving the submit button, defining the function to handle the user
  * input, and adding the event listener
 */
-const locationSubmitButton = document.getElementById('location-submit');
+const form = document.getElementById('form-container');
 
 const onSubmitLocation = (element) => {
     element.preventDefault();
@@ -51,4 +51,4 @@ const onSubmitLocation = (element) => {
     getWeather(city);
 }
 
-locationSubmitButton.addEventListener('click', onSubmitLocation);
+form.addEventListener('submit', onSubmitLocation);
