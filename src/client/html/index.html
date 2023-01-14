@@ -11,17 +11,19 @@
         </header>
         <section id="planner-container">
             <section id="form-container">
-                <form id="location-form">
-                    <label for="location-input">Location:</label>
-                    <input id="location-input" type="text" name="location-input" placeholder="Write location here">
+                <form id="travel-form">
+                    <div id="location-form">
+                        <label for="location-input">Location:</label>
+                        <input id="location-input" type="text" name="location-input" placeholder="Write location here">
+                    </div>
+                    <div id="date-form">
+                        <label for="start-date-input">Start date:</label>
+                        <input id="start-date-input" type="date" name="start-date-input">
+                        <label for="end-date-input">End date:</label>
+                        <input id="end-date-input" type="date" name="end-date-input">
+                    </div>
+                    <input id="form-submit" type="submit" value="Send">
                 </form>
-                <form id="date-form">
-                    <label for="start-date-input">Start date:</label>
-                    <input id="start-date-input" type="date" name="start-date-input">
-                    <label for="end-date-input">End date:</label>
-                    <input id="end-date-input" type="date" name="end-date-input">
-                </form>
-                <input id="date-submit" type="submit" value="Send">
             </section>
             <section id="plan-container">
                 <h3 id="plan-container-header">Planned Travels</h3>
