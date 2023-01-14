@@ -20,24 +20,19 @@ const GEO_URL = 'http://api.geonames.org/searchJSON?q=';
 //const WEA_URL
 //const PIX_URL
 
-const getLatLng = async (city) => {
-    await fetch(GEO_URL+city+GEO_API)
-    .then(async response => { 
-        const parsed = await response.json();
+const getLatLng = async (req, res) => {
+    await fetch(GEO_URL+req.body.city+GEO_API)
+    .then(async geoRes => { 
+        const parsed = await geoRes.json();
         const latLng = { 'lat': parsed.geonames[0].lat, 'lng': parsed.geonames[0].lng };
         console.log(latLng);
-        return latLng
-        response.send(JSON.stringify(latLng));
+        res.send(JSON.stringify(latLng));
+        return latLng;
     })
     .catch( error => { console.log(error) })
 }
 
-app.post('/city', async (req, res) => {
-    const city = req.body.city;
-    console.log(city);
-    const latLng = await getLatLng(city);
-    res.send(latLng);
-});
+app.post('/city', getLatLng);
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
