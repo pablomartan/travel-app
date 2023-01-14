@@ -117,4 +117,6 @@ const onSubmitLocation = (element) => {
     collectData(city, date);
 }
 
-form.addEventListener('submit', onSubmitLocation);
+export {
+    onSubmitLocation
+}
