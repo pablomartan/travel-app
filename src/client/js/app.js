@@ -1,9 +1,17 @@
-/*
- * Sending the query to the server
+
+/**
+ *
+ * Helper functions
+ *
 */
-const sendQuery = async (cityName) => {
-    try {
-        await fetch('http://localhost:8081/city', {
+
+/**
+ * @description: queries the GeoNames API with the location name provided by
+ * the user and returns the latitude and longitud of said location
+ * @param {String} cityName: the name of the location (presumed to be a city)
+*/
+const queryGeoNames = async (cityName) => {
+    const query = await fetch('http://localhost:8081/city', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -11,13 +19,22 @@ const sendQuery = async (cityName) => {
             },
             body: JSON.stringify(cityName)
         })
-        .then(async (response) => {
-            console.log('City Posted');
-        })
-    }
-    catch(error) {
-        console.log('Something went wrong! See: ', error);
-    }
+    return query;
+}
+
+/**
+ *
+ * Main functionality
+ *
+*/
+
+const getWeather = async (cityName) => {
+    await queryGeoNames(cityName)
+    .then(async geoRes => {
+        const latLng = await geoRes.json();
+        console.log(latLng);
+        return latLng;
+    })
 }
 
 /*
@@ -31,7 +48,7 @@ const onSubmitLocation = (element) => {
 
     const locationInput = document.getElementById('location-input');
     const city = { 'city': locationInput.value };
-    sendQuery(city);
+    getWeather(city);
 }
 
 locationSubmitButton.addEventListener('click', onSubmitLocation);
