@@ -12,48 +12,6 @@ const keyPairs = {
 };
 
 /**
- *
- * Helper functions
- *
-*/
-
-/**
- * @description: queries the GeoNames API with a location name and extracts the
- * latitude and longitude information from the first entry (the one with most
- * resemblance to the given name)
- * @param {String} city: the location name
-*/
-const getLatLng = async (baseUrl, apiKey, city) => {
-    console.log(`Querying for coordinates of city ${city}`);
-    const coords = await fetch(baseUrl + apiKey + `&q=${city}`)
-    .then(async geoRes => { 
-        const parsed = await geoRes.json();
-        const latLng = { 'lat': parsed.geonames[0].lat, 'lng': parsed.geonames[0].lng };
-        //console.log(latLng);
-        return latLng;
-    })
-    .catch( error => { console.log(error) })
-
-    return coords;
-}
-
-/**
- * @description: queries the Pixabay API with a location name, gets the first
- * image related to that search and sends it back to the client
- * @param {String} city: the location name
-*/
-const getPic = async (baseUrl, apiKey, city) => {
-    console.log(`Querying for picture of city ${city}`);
-    const pic = await fetch(baseUrl + apiKey + `&q=${city}&type=photo`)
-    .then( async response => {
-        const parsed = await response.json();
-        const url = parsed.hits[0].largeImageURL;
-        return url;
-    })
-    return pic;
-}
-
-/**
  * @description: retrieves an API key dictionary from server
  * @param {String}: the URL to fetch
 */
@@ -71,6 +29,12 @@ const retrieveKeys = async (url) => {
 };
 
 /**
+ *
+ * Main functionality
+ *
+*/
+
+/**
  * @description: collects the data from the different APIs and sends it to the
  * function for updating the UI 
  * @param {String} city: the city name
@@ -79,34 +43,31 @@ const retrieveKeys = async (url) => {
 const collectData = async (city, date) => {
     retrieveKeys('http://localhost:8081/keyPairs')
     .then(async () => {
-        const latLng = await getLatLng(geoUrl, geoKey, city);
-        //const weather = await getWeater(latLng, date, weaUrl, weaKey);
-        const pic = await getPic(pixUrl, pixKey, city);
+        const latLng = await Client.getLatLng(geoUrl, geoKey, city);
+        //const weather = await Client.getWeater(latLng, date, weaUrl, weaKey);
+        const pic = await Client.getPic(pixUrl, pixKey, city);
         const data = {
             'city': city,
+            'date': date,
             //'weather': weather,
             'pic': pic
         };
+        console.log(data);
         return data;
     })
+    .then(data => {
+        Client.updateUi(data);
+    })
 };
-
-/**
- *
- * Main functionality
- *
-*/
-
 
 /*
  * Retrieving the submit button, defining the function to handle the user
  * input, and adding the event listener
 */
-const formCollection = document.getElementsByTagName('form');
-const form = formCollection[0];
+const form = document.getElementById('travel-form');
 
-const onSubmitLocation = (element) => {
-    element.preventDefault();
+const onSubmitLocation = (evnt) => {
+    evnt.preventDefault();
 
     const city = form[0].value;
     const date = {
