@@ -49,6 +49,16 @@ const tripPlanDates = (date) => {
 };
 
 /**
+ * @description: creates the img element to display in the trip card
+ * @param {String} url: the url where the image is located
+*/
+const tripPlanPic = (url) => {
+    const newPic = document.createElement('img');
+    newPic.src = url;
+    return newPic;
+};
+
+/**
  * @description: collects the new elements into a fragment that's then passed
  * on to updateUi for DOM manipulation
  * @param {Object} data: the data to place into the page
@@ -63,6 +73,7 @@ const newTripPlan = (data) => {
     newArticle.appendChild(tripPlanTitle(data.city));
     newArticle.appendChild(tripPlanDates(data.date));
     //newArticle.appendChild(tripPlanWeather(date.weather));
+    newArticle.appendChild(tripPlanPic(data.pic));
     
     fragment.append(newArticle);
     return fragment;
