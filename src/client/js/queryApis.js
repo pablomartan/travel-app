@@ -24,7 +24,6 @@ const getLatLng = async (baseUrl, apiKey, city) => {
  * @param {Array} picArray: the array given by the Pixabay API
 */
 const selectPicture = (picArray) => {
-    let picSelection = [];
     for(let i = 0; i < picArray.length; i++) {
         const tags = picArray[i].tags.split(', ');
         for (let j = 0; j < tags.length; j++) {
