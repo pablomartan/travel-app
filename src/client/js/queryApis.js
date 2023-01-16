@@ -2,6 +2,8 @@
  * @description: queries the GeoNames API with a location name and extracts the
  * latitude and longitude information from the first entry (the one with most
  * resemblance to the given name)
+ * @param {String} url: the url to query the API
+ * @param {String} key: the API key
  * @param {String} city: the location name
 */
 const getLatLng = async (baseUrl, apiKey, city) => {
@@ -37,6 +39,8 @@ const selectPicture = (picArray) => {
 /**
  * @description: queries the Pixabay API with a location name, gets the first
  * image related to that search and sends it back to the client
+ * @param {String} url: the url to query the API
+ * @param {String} key: the API key
  * @param {String} city: the location name
 */
 const getPic = async (baseUrl, apiKey, city) => {
@@ -44,12 +48,20 @@ const getPic = async (baseUrl, apiKey, city) => {
     const pic = await fetch(baseUrl + apiKey + `&q=${city}&type=photo`)
     .then( async response => {
         const parsed = await response.json();
-        //console.log(parsed.hits);
         const picture = selectPicture(parsed.hits);
         return picture;
     })
     return pic.largeImageURL;
 }
+
+/**
+ * @description: queries the Weatherbit API with the latitude and longitude and
+ * returns the value back
+ * @param {Object} latLng: an object with the latitude and longitude of the desired
+ * location.
+ * @param {String} url: the url to query the API
+ * @param {String} key: the API key
+*/
 
 export {
     getLatLng,
