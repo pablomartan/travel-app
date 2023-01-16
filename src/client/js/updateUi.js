@@ -59,6 +59,31 @@ const tripPlanPic = (url) => {
 };
 
 /**
+ * @description: places weather info inside of HTML elements to be displayed
+ * @param {Object} data: data.descr is a description of the weather (e.g.:
+ * 'Broken clouds'; data.temps is an object with max_avg and min_avg keys,
+ * which are max and min temperature average for the day
+*/
+const tripPlanWeather = (data) => {
+    const div = document.createElement('div');
+    const titleTemp = document.createElement('h5');
+    const titleWeather = document.createElement('h5');
+    const avgTemp = document.createElement('p');
+    const weather = document.createElement('p');
+    div.classList.add('weather-info');
+    titleTemp.innerText = 'Averege temps for the next 7 days';
+    titleWeather.innerText = 'The weather today';
+    avgTemp.innerHTML = `<span class="max_avg">Max avg</span>: ${data.temps.max_avg}, <span class="min_avg">Min avg</span>: ${data.temps.min_avg}`;
+    weather.innerText = data.descr;
+    div.appendChild(titleTemp);
+    div.appendChild(avgTemp);
+    div.appendChild(titleWeather);
+    div.appendChild(weather);
+    console.log(div);
+    return div;
+};
+
+/**
  * @description: collects the new elements into a fragment that's then passed
  * on to updateUi for DOM manipulation
  * @param {Object} data: the data to place into the page
@@ -72,7 +97,7 @@ const newTripPlan = (data) => {
 
     newArticle.appendChild(tripPlanTitle(data.city));
     newArticle.appendChild(tripPlanDates(data.date));
-    //newArticle.appendChild(tripPlanWeather(date.weather));
+    newArticle.appendChild(tripPlanWeather(data.weather));
     newArticle.appendChild(tripPlanPic(data.pic));
     
     fragment.append(newArticle);

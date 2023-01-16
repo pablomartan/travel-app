@@ -1,9 +1,9 @@
 let geoKey;
-const geoUrl = 'http://api.geonames.org/searchJSON?username=';
+const geoUrl = 'http://api.geonames.org/searchJSON?';
 let weaKey;
-const weaUrl = 'https://api.weatherbit.io/v2.0/forecast/daily'; 
+const weaUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?'; 
 let pixKey;
-const pixUrl = 'https://pixabay.com/api/?key=';
+const pixUrl = 'https://pixabay.com/api/?';
 
 const keyPairs = {
     'geo': geoKey,
@@ -28,6 +28,12 @@ const retrieveKeys = async (url) => {
     })
 };
 
+const resetKeys = () => {
+    geoKey = '';
+    weaKey = '';
+    pixKey = '';
+};
+
 /**
  *
  * Main functionality
@@ -44,15 +50,16 @@ const collectData = async (city, date) => {
     retrieveKeys('http://localhost:8081/keyPairs')
     .then(async () => {
         const latLng = await Client.getLatLng(geoUrl, geoKey, city);
-        //const weather = await Client.getWeater(latLng, date, weaUrl, weaKey);
+        const weather = await Client.getWeather(weaUrl, weaKey, latLng);
         const pic = await Client.getPic(pixUrl, pixKey, city);
         const data = {
             'city': city,
             'date': date,
-            //'weather': weather,
+            'weather': weather,
             'pic': pic
         };
         console.log(data);
+        resetKeys();
         return data;
     })
     .then(data => {
