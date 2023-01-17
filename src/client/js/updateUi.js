@@ -32,7 +32,7 @@ const tripPlanTitle = (city) => {
 const createDate = (date, when) => {
     const parag = document.createElement('p');
     parag.classList.add(`${when}-date`);
-    parag.innerHTML = `${capitalize(when)}<br>${date}`;
+    parag.innerHTML = `${capitalize(when)}: ${date}`;
     return parag;
 };
 
@@ -66,18 +66,12 @@ const tripPlanPic = (url) => {
 */
 const tripPlanWeather = (data) => {
     const div = document.createElement('div');
-    const titleTemp = document.createElement('h5');
-    const titleWeather = document.createElement('h5');
     const avgTemp = document.createElement('p');
     const weather = document.createElement('p');
     div.classList.add('weather-info');
-    titleTemp.innerText = 'Averege temps for the next 7 days';
-    titleWeather.innerText = 'The weather today';
-    avgTemp.innerHTML = `<span class="max_avg">Max avg</span>: ${data.temps.max_avg}, <span class="min_avg">Min avg</span>: ${data.temps.min_avg}`;
-    weather.innerText = data.descr;
-    div.appendChild(titleTemp);
+    avgTemp.innerHTML = `Avg. temps: <span class="max_avg">${data.temps.max_avg}</span> ºC, <span class="min_avg">${data.temps.min_avg}</span> ºC`;
+    weather.innerText = `Today the weather is: ${data.descr}`;
     div.appendChild(avgTemp);
-    div.appendChild(titleWeather);
     div.appendChild(weather);
     console.log(div);
     return div;
