@@ -1,3 +1,8 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+const port = process.env.PORT;
+
 let geoKey;
 const geoUrl = 'http://api.geonames.org/searchJSON?';
 let weaKey;
@@ -47,7 +52,7 @@ const resetKeys = () => {
  * @param {Object} date: the starting and ending dates the trip is planned for
 */
 const collectData = async (city, date) => {
-    retrieveKeys('http://localhost:8081/keyPairs')
+    retrieveKeys(`http://localhost:${port}/keyPairs`)
     .then(async () => {
         const latLng = await Client.getLatLng(geoUrl, geoKey, city);
         const weather = await Client.getWeather(weaUrl, weaKey, latLng);
@@ -58,7 +63,6 @@ const collectData = async (city, date) => {
             'weather': weather,
             'pic': pic
         };
-        console.log(data);
         resetKeys();
         return data;
     })
