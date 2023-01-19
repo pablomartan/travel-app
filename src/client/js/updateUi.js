@@ -42,9 +42,8 @@ const createDate = (date, when) => {
 */
 const tripPlanDates = (date) => {
     const div = document.createElement('div');
-    div.classList.add('trip-dates');
-    div.appendChild(createDate(date.start, 'start'));
-    div.appendChild(createDate(date.end, 'end'));
+    div.classList.add('depart-date');
+    div.appendChild(createDate(date.start, 'departing'));
     return div;
 };
 
@@ -118,7 +117,6 @@ const createPlanContainer = () => {
 */
 const insertPlanContainer = (container) => {
     const sections = document.getElementsByTagName('section');
-    //console.log(sections[0]);
     sections[0].parentNode.insertBefore(container, sections[0].nextSibling);
     
     return container;
