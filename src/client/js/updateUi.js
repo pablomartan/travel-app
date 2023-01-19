@@ -43,7 +43,7 @@ const createDate = (date, when) => {
 const tripPlanDates = (date) => {
     const div = document.createElement('div');
     div.classList.add('depart-date');
-    div.appendChild(createDate(date.start, 'departing'));
+    div.appendChild(createDate(date, 'departing'));
     return div;
 };
 
