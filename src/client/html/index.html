@@ -23,9 +23,20 @@
                 <input id="form-submit" type="submit" value="Add trip!">
             </form>
         </section>
-        <footer>
-            ©Pablo Martínez 2023 | Photos retrieved using <a href="https://pixabay.com/">Pixabay</a> web API.
-        </footer>
     </main>
+    <footer>
+        <div id="footer-content">
+            ©Pablo Martínez 2023 | Photos retrieved using <a href="https://pixabay.com/">Pixabay</a> web API.
+        </div>
+    </footer>
+    <script>
+         // Check that service workers are supported
+         if ('serviceWorker' in navigator) {
+             // Use the window load event to keep the page load performant
+             window.addEventListener('load', () => {
+                 navigator.serviceWorker.register('/service-worker.js');
+             });
+         }
+    </script>
 </body>
 </html>

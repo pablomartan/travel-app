@@ -70,9 +70,9 @@ const collectData = async (city, date) => {
  * Retrieving the submit button, defining the function to handle the user
  * input, and adding the event listener
 */
-const form = document.getElementById('travel-form');
 
 const onSubmitLocation = (evnt) => {
+    const form = document.getElementById('travel-form');
     evnt.preventDefault();
 
     const city = form[0].value;
@@ -82,5 +82,6 @@ const onSubmitLocation = (evnt) => {
 }
 
 export {
-    onSubmitLocation
+    onSubmitLocation,
+    resetKeys
 }

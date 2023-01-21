@@ -77,7 +77,7 @@ const getLatLng = async (baseUrl, apiKey, city) => {
 const getPic = async (baseUrl, apiKey, city) => {
     console.log(`Querying for picture of city ${city}`);
     const pic = await fetch(baseUrl + apiKey + `&q=${city}&type=photo`)
-    .then( async response => {
+    .then(async response => {
         const parsed = await response.json();
         const picture = parsed.hits[0];
         return picture;

@@ -52,8 +52,9 @@ const tripPlanDates = (date) => {
  * @param {String} url: the url where the image is located
 */
 const tripPlanPic = (url) => {
-    const newPic = document.createElement('img');
-    newPic.src = url;
+    const newPic = document.createElement('div');
+    newPic.classList.add('trip-pic');
+    newPic.style = `background: url(${url})`;
     return newPic;
 };
 
