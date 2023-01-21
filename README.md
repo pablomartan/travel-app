@@ -5,7 +5,7 @@ where you input the city you want to go to and the dates you plan to go and the
 app creates a card with:
 - the city name,
 - a picture gotten from [Pixabay](https://pixabay.com),
-- the start and end dates,
+- the departure date,
 - some weather information (max and min temp averages for *current week* and
   the weather of *today*; the weatherbit API free plan is so limited that you
   can't query for the dates of the trip)
