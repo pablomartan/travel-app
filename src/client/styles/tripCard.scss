@@ -1,0 +1,59 @@
+@use '_colorpalette' as colors;
+
+#plan-container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.trip-card {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$morning-blue;
+
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.trip-pic {
+    width: inherit;
+    min-height: 200px;
+    background-size: cover !important;
+}
+
+@media screen and (min-width: 470px) {
+    .trip-card {
+        display: grid;
+        grid-template-columns: 50% auto;
+        grid-template-rows: 10% 45% auto;
+        max-height: 250px;
+    }
+    
+    .trip-pic {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        height: 95%;
+        height: auto;
+    }
+        
+    .trip-title {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .depart-date {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: center;
+    }
+
+    .weather-info {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .trip-card {
+        height: 300px;
+    }
+}

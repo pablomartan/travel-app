@@ -1,0 +1,59 @@
+@use '_colorpalette' as colors;
+    
+form {
+    display: flex;
+    flex-direction: column;
+
+    background: whitesmoke;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+    
+    input {
+        max-width: fit-content;
+        height: auto;
+
+        &[type="submit"] {
+            margin-top: 10px;
+            background-color: colors.$cultured;
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: colors.$morning-blue;
+            }
+   
+            &:hover {
+            color: colors.$independence;
+            }   
+        }
+    }
+
+    padding: 20px;
+    margin: 15px;
+}
+
+#location-form {
+    border-bottom: 1px solid #282828;
+    padding-bottom: 10px;
+}
+
+#date-form {
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 1px solid #282828;
+    padding: 10px 0 10px 0;
+
+    input {
+    }
+}
+
+@media screen and (min-width: 440px) {
+    #date-form {
+        flex-direction: row;
+
+        label {
+            margin: 0 5px 0 5px;
+        }
+    }
+}

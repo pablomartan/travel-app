@@ -1,0 +1,34 @@
+@use '_colorpalette' as colors;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 60px;
+
+    h1 {
+        font-size: 2.5em;
+        font-weight: lighter;
+        box-shadow: inset 0 -0.4em 0 0 colors.$apricot;
+        color: #282828;
+    }
+}
+
+#plan-container-header {
+    margin: 10px;
+}
+
+@media screen and (min-width: 810px) {
+    #plan-container-header {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    #plan-container-header {
+       margin: 30px;
+       margin-left: 50px;
+    }
+}
