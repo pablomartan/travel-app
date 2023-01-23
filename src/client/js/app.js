@@ -47,7 +47,7 @@ const resetKeys = () => {
  * @param {String} date: the starting and ending dates the trip is planned for
 */
 const collectData = async (city, date) => {
-    retrieveKeys(`http://localhost:8081/keyPairs`)
+    retrieveKeys(`http://localhost:8081/all`)
     .then(async () => {
         const latLng = await Client.getLatLng(geoUrl, geoKey, city);
         const weather = await Client.getWeather(weaUrl, weaKey, latLng);
