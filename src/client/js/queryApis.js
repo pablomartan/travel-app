@@ -26,7 +26,6 @@ const selectPicture = (picArray) => {
  * each one
 */
 const avgTemps = (data) => {
-    console.log(data)
     let maxAvg = 0, minAvg = 0;
     for (let i = 0; i < data.length; i++) {
         maxAvg += data[i].max_temp;
@@ -58,7 +57,6 @@ const getLatLng = async (baseUrl, apiKey, city) => {
     .then(async geoRes => { 
         const parsed = await geoRes.json();
         const latLng = { 'lat': parsed.geonames[0].lat, 'lng': parsed.geonames[0].lng };
-        //console.log(latLng);
         return latLng;
     })
     .catch( error => {
@@ -75,7 +73,6 @@ const getLatLng = async (baseUrl, apiKey, city) => {
  * @param {String} city: the location name
 */
 const getPic = async (baseUrl, apiKey, city) => {
-    console.log(`Querying for picture of city ${city}`);
     const pic = await fetch(baseUrl + apiKey + `&q=${city}&type=photo`)
     .then(async response => {
         const parsed = await response.json();
