@@ -1,6 +1,3 @@
-$serif: Georgia;
-$sans: Helvetica;
-
-$primary-color: #91daf7;
-$secondary-color: #f791da;
-$tertiary-color: #daf791;
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Sofia+Sans:wght@500&display=swap);
+$serif: 'Roboto Slab', Georgia, Times, serif;
+$sans: 'Sofia Sans', Helvetica, Arial, sans-serif;

@@ -3,11 +3,10 @@
 form {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 
     background: whitesmoke;
-    border: 2px solid lightgrey;
-    border-radius: 10px;
-    
+    padding: 40px;
     input {
         max-width: fit-content;
         height: auto;
@@ -27,9 +26,6 @@ form {
             }   
         }
     }
-
-    padding: 20px;
-    margin: 15px;
 }
 
 #location-form {
@@ -43,9 +39,6 @@ form {
 
     border-bottom: 1px solid #282828;
     padding: 10px 0 10px 0;
-
-    input {
-    }
 }
 
 @media screen and (min-width: 440px) {

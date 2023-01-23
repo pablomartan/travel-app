@@ -5,13 +5,12 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 5px;
-    margin-bottom: 60px;
+    padding-bottom: 60px;
+    background-color: colors.$apricot;
 
     h1 {
         font-size: 2.5em;
         font-weight: lighter;
-        box-shadow: inset 0 -0.4em 0 0 colors.$apricot;
         color: #282828;
     }
 }
