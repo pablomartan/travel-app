@@ -1,5 +1,6 @@
 /*
  * Testing the function to retrieve the keys from the server
+ * Followed instructions on https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 */
 
 const request = require('supertest');
