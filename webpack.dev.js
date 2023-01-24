@@ -17,18 +17,26 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: 'babel-loader'
             },
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]',
+                    outputPath: 'icons/'
+                }
             }
        ]
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/html/index.html",
-            filename: "./index.html"
+            template: './src/client/html/index.html',
+            filename: './index.html'
         }),
 
         new CleanWebpackPlugin({
