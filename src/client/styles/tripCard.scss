@@ -13,6 +13,29 @@
     color: royalblue;
 }
 
+.weather-info {
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: 75% auto;
+    height: 50%;
+}
+
+.weather-descr {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.avg-temps {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.weather-icon {
+    grid-column: 2;
+    grid-row: 2;
+    width: 20%;
+}
+
 .trip-card {
     display: flex;
     flex-direction: column;
@@ -33,14 +56,11 @@
         display: grid;
         grid-template-columns: 50% auto;
         grid-template-rows: 10% 45% auto;
-        max-height: 250px;
     }
     
     .trip-pic {
         grid-column: 2;
         grid-row: 1 / span 3;
-        height: 95%;
-        height: auto;
     }
         
     .trip-title {
