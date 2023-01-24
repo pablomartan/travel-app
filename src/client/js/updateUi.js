@@ -1,8 +1,6 @@
 /*
  * HELPER FUNCTIONS
 */
-// TODO: process image and weather information
-
 /**
  * @description: wraps a string in a span with class 'capitalize' to be
  * displayed with a capital initial
@@ -59,6 +57,19 @@ const tripPlanPic = (url) => {
 };
 
 /**
+ * @description: creates an image for the weather icon
+ * @param {String} code: weather icon code
+ * The codes can be checked on Weatherbit API docs: https://www.weatherbit.io/api/codes
+*/
+const weatherIcon = (code) => {
+    const icon = document.createElement('img');
+    icon.classList.add('weather-icon');
+    icon.src = `icons/${code}.png`;
+    icon.alt = 'Icon corresponding to the weather description';
+    return icon;
+};
+
+/**
  * @description: places weather info inside of HTML elements to be displayed
  * @param {Object} data: data.descr is a description of the weather (e.g.:
  * 'Broken clouds'; data.temps is an object with max_avg and min_avg keys,
@@ -67,13 +78,15 @@ const tripPlanPic = (url) => {
 const tripPlanWeather = (data) => {
     const div = document.createElement('div');
     const avgTemp = document.createElement('p');
+    avgTemp.classList.add('avg-temps');
     const weather = document.createElement('p');
+    weather.classList.add('weather-descr');
     div.classList.add('weather-info');
     avgTemp.innerHTML = `Avg. temps: <span class="max_avg">${data.temps.max_avg}</span> ºC, <span class="min_avg">${data.temps.min_avg}</span> ºC`;
     weather.innerText = `Today the weather is: ${data.descr}`;
     div.appendChild(avgTemp);
     div.appendChild(weather);
-    console.log(div);
+    div.appendChild(weatherIcon(data.icon));
     return div;
 };
 
