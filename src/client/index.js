@@ -6,6 +6,8 @@ import {
 } from './js/queryApis'
 
 import { updateUi } from './js/updateUi'
+import { sortTrips } from './js/sortTrips'
+import { saveTrip } from './js/offlineTrips'
 
 import './styles/_variables.scss'
 import './styles/_colorpalette.scss'
@@ -85,7 +87,9 @@ export {
     getLatLng,
     getWeather,
     getPic,
-    updateUi
+    updateUi,
+    sortTrips,
+    saveTrip
 }
 
 const form = document.getElementById('travel-form');
