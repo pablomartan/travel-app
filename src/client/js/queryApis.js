@@ -103,7 +103,6 @@ const getWeather = async (baseUrl, apiKey, latLng) => {
         const newWeather = {}
         newWeather.temps = avgTemps(weatherData.data);
         newWeather.descr = weatherData.data[0].weather.description;
-        newWeather.icon = weatherData.data[0].weather.icon;
         return newWeather;
     })
     .catch( error => {
