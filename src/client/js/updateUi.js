@@ -91,6 +91,17 @@ const tripPlanWeather = (data) => {
 };
 
 /**
+ * @description: creates a button with the specified value and id
+ * @param {String} value: the desired value for the button
+*/
+const createButton = (value) => {
+    const button = document.createElement('button');
+    button.value = value;
+    button.classList.add(`${value}-button`);
+    return button;
+};
+
+/**
  * @description: collects the new elements into a fragment that's then passed
  * on to updateUi for DOM manipulation
  * @param {Object} data: the data to place into the page
@@ -99,14 +110,20 @@ const newTripPlan = (data) => {
     const fragment = document.createDocumentFragment();
 
     const newArticle = document.createElement('article');
-    newArticle.id = `${data.city}-trip`;
+    newArticle.id = `${data.city.toLowerCase()}-trip`;
     newArticle.classList.add('trip-card');
+    const saveButton = createButton('save');
+    saveButton.addEventListener(Client.saveTrip);
+    const deleteButton = createButton('delete');
+    deleteButton.addEventListener(Client.deleteTrip);
 
     newArticle.appendChild(tripPlanTitle(data.city));
     newArticle.appendChild(tripPlanDates(data.date));
     newArticle.appendChild(tripPlanWeather(data.weather));
     newArticle.appendChild(tripPlanPic(data.pic));
-    
+    newArticle.appendChild(saveButton);
+    newArticle.appendChild(deleteButton);
+
     fragment.append(newArticle);
     return fragment;
 };
