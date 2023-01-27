@@ -113,9 +113,9 @@ const newTripPlan = (data) => {
     newArticle.id = `${data.city.toLowerCase()}-trip`;
     newArticle.classList.add('trip-card');
     const saveButton = createButton('save');
-    saveButton.addEventListener(Client.saveTrip);
+    saveButton.addEventListener('click', Client.saveTrip);
     const deleteButton = createButton('delete');
-    deleteButton.addEventListener(Client.deleteTrip);
+    deleteButton.addEventListener('click', Client.deleteTrip);
 
     newArticle.appendChild(tripPlanTitle(data.city));
     newArticle.appendChild(tripPlanDates(data.date));
@@ -126,31 +126,6 @@ const newTripPlan = (data) => {
 
     fragment.append(newArticle);
     return fragment;
-};
-
-/**
- * @description: creates a new section to contain the planned trips
-*/
-const createPlanContainer = () => {
-    const container = document.createElement('section');
-    const containerHeader = document.createElement('h2');
-
-    container.id = 'plan-container';
-    containerHeader.id = 'plan-container-header';
-    containerHeader.innerText = 'My trips';
-    container.appendChild(containerHeader);
-
-    return container;
-};
-
-/**
- * @description: inserts the plan container after the form in the page
-*/
-const insertPlanContainer = (container) => {
-    const sections = document.getElementsByTagName('section');
-    sections[0].parentNode.insertBefore(container, sections[0].nextSibling);
-    
-    return container;
 };
 
 /*
@@ -166,7 +141,7 @@ const insertPlanContainer = (container) => {
  * - weather information
 */
 const updateUi = (data) => {
-    const planContainer = document.getElementById('plan-container') || insertPlanContainer(createPlanContainer());
+    const planContainer = document.getElementById('plan-container') || Client.insertPlanContainer(Client.createPlanContainer());
     planContainer.appendChild(newTripPlan(data));
 };
 
