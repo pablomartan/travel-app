@@ -7,7 +7,14 @@ import {
 
 import { updateUi } from './js/updateUi'
 import { sortTrips } from './js/sortTrips'
-import { saveTrip } from './js/offlineTrips'
+import {
+    saveTrip,
+    displayOfflineTrips
+} from './js/offlineTrips'
+import {
+    createPlanContainer,
+    insertPlanContainer
+} from './js/generalFunctions'
 
 import './styles/_variables.scss'
 import './styles/_colorpalette.scss'
@@ -87,10 +94,17 @@ export {
     getLatLng,
     getWeather,
     getPic,
+    createPlanContainer,
+    insertPlanContainer,
     updateUi,
     sortTrips,
-    saveTrip
+    saveTrip,
+    displayOfflineTrips
 }
 
 const form = document.getElementById('travel-form');
 form.addEventListener('submit', onSubmitLocation);
+
+document.onload = () => {
+    displayOfflineTrips();
+};
