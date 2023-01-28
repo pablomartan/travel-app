@@ -46,13 +46,31 @@ const tripPlanDates = (date) => {
 };
 
 /**
+ * @description: turns a url image into base64
+ * @param {String} url: the url where the image is
+ * function sourced from https://stackoverflow.com/a/20285053
+*/
+const toDataURL = url => fetch(url)
+.then(response => response.blob())
+.then(blob => new Promise((resolve, reject) => {
+  const reader = new FileReader()
+  reader.onloadend = () => resolve(reader.result)
+  reader.onerror = reject
+  reader.readAsDataURL(blob)
+}))
+
+
+/**
  * @description: creates the img element to display in the trip card
  * @param {String} url: the url where the image is located
 */
 const tripPlanPic = (url) => {
     const newPic = document.createElement('div');
     newPic.classList.add('trip-pic');
-    newPic.style = `background: url(${url})`;
+    toDataURL(url)
+        // .replace from https://stackoverflow.com/a/28288424
+        .then(data => data.replace(/(\r\n|\n|\r)/gm, ""))
+        .then(base64 => newPic.style.background = `url(${base64})`);
     return newPic;
 };
 
