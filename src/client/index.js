@@ -6,6 +6,16 @@ import {
 } from './js/queryApis'
 
 import { updateUi } from './js/updateUi'
+import {
+    createPlanContainer,
+    insertPlanContainer,
+} from './js/generalFunctions'
+
+import {
+    saveTrip,
+    deleteTrip,
+    displayOfflineTrips
+} from './js/offlineTrips'
 
 import './styles/_variables.scss'
 import './styles/_colorpalette.scss'
@@ -81,13 +91,19 @@ import u00d from './media/weather_icons/u00d.png'
 import u00n from './media/weather_icons/u00n.png'
 
 export {
+    createPlanContainer,
+    insertPlanContainer,
     onSubmitLocation,
     getLatLng,
     getWeather,
     getPic,
-    updateUi
+    updateUi,
+    saveTrip,
+    deleteTrip,
+    displayOfflineTrips
 }
 
 const form = document.getElementById('travel-form');
 form.addEventListener('submit', onSubmitLocation);
 
+document.addEventListener('DOMContentLoaded', displayOfflineTrips);
