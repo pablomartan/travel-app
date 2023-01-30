@@ -24,7 +24,7 @@ const displayOfflineTrips = () => {
 /**
  * @description: saves a trip to localStorage to be able to retrieve it on
  * page load
- * @param {Event} click: the click after the user pressed the save trip button
+ * @param {Event} click: the click of the save trip button
 */
 const saveTrip = (click) => {
     let savedTrips;
@@ -37,6 +37,11 @@ const saveTrip = (click) => {
     savedTrips.push(trip);
     localStorage.setItem('trips', JSON.stringify(savedTrips));
 };
+
+/**
+ * @description: deletes a trip from the DOM and the localStorage;
+ * @param: {Event} click: the click of the delete button
+*/
 
 export {
     saveTrip,
