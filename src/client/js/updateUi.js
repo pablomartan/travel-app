@@ -116,6 +116,7 @@ const createButton = (value) => {
     const button = document.createElement('button');
     button.value = value;
     button.classList.add(`${value}-button`);
+    button.innerHTML = `${capitalize(value)}`;
     return button;
 };
 
