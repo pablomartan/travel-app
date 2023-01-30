@@ -42,8 +42,31 @@ const saveTrip = (click) => {
  * @description: deletes a trip from the DOM and the localStorage;
  * @param: {Event} click: the click of the delete button
 */
+const deleteTrip = (click) => {
+    const trip = click.originalTarget.parentElement;
+    
+    if (localStorage.getItem('trips') != undefined) {
+        const storedTrips = JSON.parse(localStorage.getItem('trips'));
+        let tripArray = [];
+        
+        storedTrips.forEach(storedTrip => {
+            const div = document.createElement('div');
+            div.innerHTML = trip;
+            tripArray.push(div.firstChild);
+        })
+        
+        tripArray.filter(storedTrip => {
+            storedTrip.id === trip.id
+        });
+
+        localStorage.setItem('trips', JSON.stringify(tripArray));
+    }
+
+    trip.remove();
+}
 
 export {
     saveTrip,
-    displayOfflineTrips
+    displayOfflineTrips,
+    deleteTrip
 }
