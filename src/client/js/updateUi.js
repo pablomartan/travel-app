@@ -160,7 +160,7 @@ const newTripPlan = (data) => {
  * - weather information
 */
 const updateUi = (data) => {
-    const planContainer = document.getElementById('plan-container') || Client.insertPlanContainer(Client.createPlanContainer());
+    const planContainer = document.getElementById('trip-container') || Client.insertPlanContainer(Client.createPlanContainer());
     planContainer.appendChild(newTripPlan(data));
 };
 
