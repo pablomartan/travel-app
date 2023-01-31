@@ -1,6 +1,21 @@
 /*
  * HELPER FUNCTIONS
 */
+/**
+ * @description: extracts saved trips in localStorage
+*/
+const extractTripsFromLocalStorage = () => {
+    const savedTrips = JSON.parse(localStorage.getItem('trips'));
+    let tripArray = [];
+    savedTrips.forEach((trip) => {
+        const div = document.createElement('div');
+        div.innerHTML = trip;
+        const extractedTrip = div.firstChild;
+        tripArray.push(extractedTrip);
+        div.remove();
+    });
+    return tripArray;
+};
 
 /*
  * MAIN FUNCTIONALITY
@@ -10,14 +25,9 @@
 */
 const displayOfflineTrips = () => {
     if (localStorage.getItem('trips') != undefined) {
-        const tripArray = JSON.parse(localStorage.getItem('trips'));
         const tripContainer = document.getElementById('trip-container') || Client.insertPlanContainer(Client.createPlanContainer());
-        tripArray.forEach((trip) => {
-            const div = document.createElement('div');
-            div.innerHTML = trip;
-            const extractedTrip = div.firstChild;
-            tripContainer.appendChild(extractedTrip);
-        });
+        const tripArray = extractTripsFromLocalStorage();
+        tripArray.forEach(trip => tripContainer.appendChild(trip));
     }
 };
 
@@ -46,14 +56,7 @@ const deleteTrip = (click) => {
     const trip = click.originalTarget.parentElement;
     
     if (localStorage.getItem('trips') != undefined) {
-        const storedTrips = JSON.parse(localStorage.getItem('trips'));
-        let tripArray = [];
-        
-        storedTrips.forEach(storedTrip => {
-            const div = document.createElement('div');
-            div.innerHTML = trip;
-            tripArray.push(div.firstChild);
-        })
+        let tripArray = extractTripsFromLocalStorage();
         
         tripArray.filter(storedTrip => {
             storedTrip.id === trip.id
