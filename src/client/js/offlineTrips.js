@@ -24,8 +24,11 @@ const extractTripsFromLocalStorage = () => {
  * @description: loads the saved trips in localStorage
 */
 const displayOfflineTrips = () => {
+    // check if there are saved trips in localStorage
     if (localStorage.getItem('trips') != undefined) {
+        // create a trip container in case there isn't none
         const tripContainer = document.getElementById('trip-container') || Client.insertPlanContainer(Client.createPlanContainer());
+
         const tripArray = extractTripsFromLocalStorage();
         tripArray.forEach(trip => tripContainer.appendChild(trip));
     }
@@ -55,6 +58,7 @@ const saveTrip = (click) => {
 const deleteTrip = (click) => {
     const trip = click.originalTarget.parentElement;
     
+    // remove trip from saved trips
     if (localStorage.getItem('trips') != undefined) {
         let tripArray = extractTripsFromLocalStorage();
         
@@ -65,6 +69,7 @@ const deleteTrip = (click) => {
         localStorage.setItem('trips', JSON.stringify(tripArray));
     }
 
+    // remove trip from DOM
     trip.remove();
 }
 
