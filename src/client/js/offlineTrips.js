@@ -24,13 +24,18 @@ const extractTripsFromLocalStorage = () => {
  * @description: loads the saved trips in localStorage
 */
 const displayOfflineTrips = () => {
+    const tripArray = extractTripsFromLocalStorage();
+
     // check if there are saved trips in localStorage
-    if (localStorage.getItem('trips') != undefined) {
+    if (tripArray != undefined && tripArray.length > 0) {
         // create a trip container in case there isn't none
         const tripContainer = document.getElementById('trip-container') || Client.insertPlanContainer(Client.createPlanContainer());
 
-        const tripArray = extractTripsFromLocalStorage();
-        tripArray.forEach(trip => tripContainer.appendChild(trip));
+        tripArray.forEach(trip => {console.log(trip); tripContainer.appendChild(trip);});
+        const saveButtons = Array.from(document.getElementsByClassName('save-button'));
+        saveButtons.forEach(button => button.addEventListener('click', Client.saveTrip));
+        const deleteButtons = Array.from(document.getElementsByClassName('delete-button'));
+        deleteButtons.forEach(button => button.addEventListener('click', Client.deleteTrip));
     }
 };
 
@@ -42,6 +47,7 @@ const displayOfflineTrips = () => {
 const saveTrip = (click) => {
     let savedTrips;
     const trip = click.originalTarget.parentElement.outerHTML;
+    console.log(trip);
     if (localStorage.getItem('trips') != undefined) {
         savedTrips = JSON.parse(localStorage.getItem('trips'));
     } else {
@@ -59,14 +65,12 @@ const deleteTrip = (click) => {
     const trip = click.originalTarget.parentElement;
     
     // remove trip from saved trips
-    if (localStorage.getItem('trips') != undefined) {
-        let tripArray = extractTripsFromLocalStorage();
-        
-        tripArray.filter(storedTrip => {
-            storedTrip.id === trip.id
-        });
-
-        localStorage.setItem('trips', JSON.stringify(tripArray));
+    const tripArray = extractTripsFromLocalStorage();
+    if (tripArray != undefined && tripArray.length > 0) {
+        const filtered = tripArray.filter(storedTrip => storedTrip.id != trip.id);
+        let stringify = [];
+        filtered.forEach(el => stringify.push(el.outerHTML));
+        localStorage.setItem('trips', JSON.stringify(stringify));
     }
 
     // remove trip from DOM
