@@ -5,16 +5,20 @@
  * @description: extracts saved trips in localStorage
 */
 const extractTripsFromLocalStorage = () => {
-    const savedTrips = JSON.parse(localStorage.getItem('trips'));
-    let tripArray = [];
-    savedTrips.forEach((trip) => {
-        const div = document.createElement('div');
-        div.innerHTML = trip;
-        const extractedTrip = div.firstChild;
-        tripArray.push(extractedTrip);
-        div.remove();
-    });
-    return tripArray;
+    if (JSON.parse(localStorage.getItem('trips')) != null) {
+        const savedTrips = JSON.parse(localStorage.getItem('trips'));
+        let tripArray = [];
+        savedTrips.forEach((trip) => {
+            const div = document.createElement('div');
+            div.innerHTML = trip;
+            const extractedTrip = div.firstChild;
+            tripArray.push(extractedTrip);
+            div.remove();
+        });
+        return tripArray;
+    } else {
+        return undefined;
+    }
 };
 
 /*
@@ -31,7 +35,7 @@ const displayOfflineTrips = () => {
         // create a trip container in case there isn't none
         const tripContainer = document.getElementById('trip-container') || Client.insertPlanContainer(Client.createPlanContainer());
 
-        tripArray.forEach(trip => {console.log(trip); tripContainer.appendChild(trip);});
+        tripArray.forEach(trip => tripContainer.appendChild(trip));
         const saveButtons = Array.from(document.getElementsByClassName('save-button'));
         saveButtons.forEach(button => button.addEventListener('click', Client.saveTrip));
         const deleteButtons = Array.from(document.getElementsByClassName('delete-button'));
@@ -47,7 +51,6 @@ const displayOfflineTrips = () => {
 const saveTrip = (click) => {
     let savedTrips;
     const trip = click.originalTarget.parentElement.outerHTML;
-    console.log(trip);
     if (localStorage.getItem('trips') != undefined) {
         savedTrips = JSON.parse(localStorage.getItem('trips'));
     } else {
