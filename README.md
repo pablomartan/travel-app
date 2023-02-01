@@ -1,6 +1,6 @@
 # Travel App
 This project consists of a travel app. It is the final project of Udacity Frontend Web Development.
-The basic functionality as of jan 17 2023 is just a basic 'trip notebook',
+The basic functionality as of jan 17, 2023 is just a basic 'trip notebook',
 where you input the city you want to go to and the dates you plan to go and the
 app creates a card with:
 - the city name,
@@ -9,6 +9,10 @@ app creates a card with:
 - some weather information (max and min temp averages for *current week* and
   the weather of *today*; the weatherbit API free plan is so limited that you
   can't query for the dates of the trip)
+
+**Update**
+As of jan 31, 2023 the app can save trip cards into localStorage and delete
+them, acting more like a tasklist.
 
 ## How to use it
 You will need to instal the dependencies and the build the project. First, you
