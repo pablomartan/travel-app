@@ -50,14 +50,14 @@ const tripPlanDates = (date) => {
  * @param {String} url: the url where the image is
  * function sourced from https://stackoverflow.com/a/20285053
 */
-const toDataURL = url => fetch(url)
+const toDataURL = (url) => fetch(url)
 .then(response => response.blob())
 .then(blob => new Promise((resolve, reject) => {
   const reader = new FileReader()
   reader.onloadend = () => resolve(reader.result)
   reader.onerror = reject
   reader.readAsDataURL(blob)
-}))
+}));
 
 
 /**
