@@ -1,0 +1,131 @@
+@use '_colorpalette' as colors;
+@use '_variables' as vari;
+
+#trip-container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.max_avg {
+    color: crimson;
+}
+
+.min_avg {
+    color: royalblue;
+}
+
+.trip-card {
+    display: flex;
+    flex-direction: column;
+    background-color: colors.$morning-blue;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.depart-date {
+    p {
+        margin: 0;
+    }
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-descr {
+    margin: unset;
+}
+
+.weather-icon {
+    max-width: 60px;
+    align-self: flex-start;
+}
+
+.trip-pic {
+    background-size: cover !important;
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.save-button, .delete-button {
+    font-family: vari.$serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 1px solid colors.$independence;
+    margin-top: 3px;
+
+    &:hover {
+        box-shadow: 0 0 6px rgba(35, 173, 278, 1);
+    }
+}
+
+.delete-button {
+    background-color: crimson;
+    color: colors.$cultured;
+}
+
+@media screen and (min-width: 470px) {
+    .trip-card {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        grid-template-rows: 10% 20% 60% 10%;
+        padding: 8px;
+    }
+
+    .trip-title {
+        grid-column: 1 / span 4;
+        grid-row: 1;
+    }
+
+    .depart-date {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        margin: auto 0;
+    }
+
+    .trip-pic {
+        grid-column: 3 / span 2;
+        grid-row: 1 / span 3;
+        max-height: unset;
+    }
+
+    .weather-info {
+        grid-column: 1 / span 2;
+        grid-row: 3;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .save-button, .delete-button {
+        display: inline-block;
+        grid-row: 4;
+    }
+
+    .save-button {
+        grid-column: 3;
+        align-self: end;
+    }
+
+    .delete-button {
+        grid-column: 4;
+        align-self: end;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    #trip-container {
+        width: 80%;
+        height: 500px;
+    }
+
+    .trip-card {
+        padding: 10px 50px;
+    }
+
+    .trip-pic {
+        grid-row: 1 / span 3;
+    }
+}
