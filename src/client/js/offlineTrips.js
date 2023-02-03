@@ -49,8 +49,7 @@ const displayOfflineTrips = () => {
  * @param {Event} click: the click of the save trip button
 */
 const saveTrip = (click) => {
-    const originalTarget = click.originalTarget || click.srcElement;
-    const trip = originalTarget.parentElement.outerHTML;
+    const trip = click.target.parentElement.outerHTML;
     let savedTrips;
     if (localStorage.getItem('trips') != undefined) {
         savedTrips = JSON.parse(localStorage.getItem('trips'));
@@ -66,8 +65,8 @@ const saveTrip = (click) => {
  * @param: {Event} click: the click of the delete button
 */
 const deleteTrip = (click) => {
-    const originalTarget = click.originalTarget || click.srcElement;
-    const trip = originalTarget.parentElement;
+    const trip = click.target.parentElement;
+    console.log(trip);
     
     // remove trip from saved trips
     const tripArray = extractTripsFromLocalStorage();
