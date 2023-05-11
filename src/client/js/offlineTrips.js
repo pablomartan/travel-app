@@ -60,7 +60,9 @@ const saveTrip = (click) => {
     } else {
         savedTrips = [];
     }
-    savedTrips.push(trip);
+
+    savedTrips.includes(trip) ? null : savedTrips.push(trip);
+
     localStorage.setItem('trips', JSON.stringify(savedTrips));
 };
 
