@@ -71,7 +71,7 @@
 @media screen and (min-width: 470px) {
     .trip-card {
         display: grid;
-        grid-template-columns: repeat(4, 25%);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 10% 20% 60% 10%;
         padding: 8px;
     }
