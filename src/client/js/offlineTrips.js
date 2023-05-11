@@ -65,7 +65,10 @@ const saveTrip = (click) => {
  * @param: {Event} click: the click of the delete button
 */
 const deleteTrip = (click) => {
-    const trip = click.target.parentElement;
+    let trip = click.target;
+    while (!trip.classList.contains('trip-card')) {
+      trip = trip.parentElement;
+    }
     
     // remove trip from saved trips
     const tripArray = extractTripsFromLocalStorage();
