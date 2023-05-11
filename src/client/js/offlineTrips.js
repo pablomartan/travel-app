@@ -49,7 +49,11 @@ const displayOfflineTrips = () => {
  * @param {Event} click: the click of the save trip button
 */
 const saveTrip = (click) => {
-    const trip = click.target.parentElement.outerHTML;
+    let trip = click.target.parentElement;
+    while (!trip.classList.contains('trip-card')) {
+      trip = trip.parentElement;
+    }
+    trip = trip.outerHTML;
     let savedTrips;
     if (localStorage.getItem('trips') != undefined) {
         savedTrips = JSON.parse(localStorage.getItem('trips'));
